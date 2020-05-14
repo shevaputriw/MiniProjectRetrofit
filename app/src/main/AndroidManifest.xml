@@ -3,6 +3,7 @@
     package="id.ac.polinema.miniprojectretrofit">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddGuru"></activity>
+        <activity android:name=".MapsActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAIEcgq0bGM6KYlE67LRev-0IeMOcjQ118" />
+
+        <activity android:name=".AddGuru" />
         <activity android:name=".GuruActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".LoginAdmin" />
