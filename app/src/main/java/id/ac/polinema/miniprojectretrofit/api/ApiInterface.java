@@ -3,8 +3,13 @@ package id.ac.polinema.miniprojectretrofit.api;
 import java.util.List;
 import java.util.Map;
 
+import id.ac.polinema.miniprojectretrofit.DetailRekap;
 import id.ac.polinema.miniprojectretrofit.model.AbsenGuru;
+import id.ac.polinema.miniprojectretrofit.model.Detail;
 import id.ac.polinema.miniprojectretrofit.model.Guru;
+import id.ac.polinema.miniprojectretrofit.model.Rekap;
+import id.ac.polinema.miniprojectretrofit.model.Siswa;
+import id.ac.polinema.miniprojectretrofit.model.SiswaAdmin;
 import id.ac.polinema.miniprojectretrofit.model.User;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -19,9 +24,6 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-    @POST("loginAdmin")
-    Call<ResponseBody> loginAdmin(@Body User user);
-
     @POST("loginGuru")
     Call<ResponseBody> loginGuru(@Body User user);
 
@@ -40,4 +42,19 @@ public interface ApiInterface {
     @Multipart
     @POST("guru")
     Call<ResponseBody> tambahGuru(@Part MultipartBody.Part photo, @PartMap Map<String, RequestBody> text);
+
+    @GET("siswa")
+    Call<List<Siswa>> getSiswa();
+
+    @GET("siswa")
+    Call<List<SiswaAdmin>> getAllSiswa();
+
+    @POST("siswa")
+    Call<ResponseBody> tambahSiswa(@Body Siswa siswa);
+
+    @GET("rekap")
+    Call<List<Rekap>> getRekap();
+
+    @GET("detailRekap")
+    Call<List<Detail>> getAbsenByUsernameForRekap(@Query("username") String username);
 }

@@ -1,5 +1,7 @@
 package id.ac.polinema.miniprojectretrofit.model;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +15,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import id.ac.polinema.miniprojectretrofit.MapsActivity;
 import id.ac.polinema.miniprojectretrofit.R;
+import id.ac.polinema.miniprojectretrofit.RekapActivity;
 
 public class Guru extends AbstractItem<Guru, Guru.ViewHolder> {
     private String id_guru;
@@ -133,7 +137,7 @@ public class Guru extends AbstractItem<Guru, Guru.ViewHolder> {
         }
 
         @Override
-        public void bindView(Guru item, List<Object> payloads) {
+        public void bindView(final Guru item, List<Object> payloads) {
             Picasso.get().load(item.getFoto()).into(profil);
             id_guru.setText("ID Guru : " + item.id_guru);
             nama.setText("Nama : " + item.nama);

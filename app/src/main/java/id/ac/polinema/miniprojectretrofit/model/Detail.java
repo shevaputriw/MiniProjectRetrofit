@@ -16,7 +16,7 @@ import java.util.List;
 import id.ac.polinema.miniprojectretrofit.MapsActivity;
 import id.ac.polinema.miniprojectretrofit.R;
 
-public class AbsenGuru extends AbstractItem<AbsenGuru, AbsenGuru.ViewHolder> {
+public class Detail extends AbstractItem<Detail, Detail.ViewHolder> {
     private String username;
     private String password;
     private String jam_login;
@@ -27,7 +27,7 @@ public class AbsenGuru extends AbstractItem<AbsenGuru, AbsenGuru.ViewHolder> {
     private String nim_siswa;
     private String nama;
 
-    public AbsenGuru(String username, String password, String jam_login, String jam_logout, String tanggal, double lokasi_latitude, double lokasi_longitude, String nim_siswa, String nama) {
+    public Detail(String username, String password, String jam_login, String jam_logout, String tanggal, double lokasi_latitude, double lokasi_longitude, String nim_siswa, String nama) {
         this.username = username;
         this.password = password;
         this.jam_login = jam_login;
@@ -83,16 +83,32 @@ public class AbsenGuru extends AbstractItem<AbsenGuru, AbsenGuru.ViewHolder> {
         return lokasi_latitude;
     }
 
+    public void setLokasi_latitude(double lokasi_latitude) {
+        this.lokasi_latitude = lokasi_latitude;
+    }
+
     public double getLokasi_longitude() {
         return lokasi_longitude;
+    }
+
+    public void setLokasi_longitude(double lokasi_longitude) {
+        this.lokasi_longitude = lokasi_longitude;
     }
 
     public String getNim_siswa() {
         return nim_siswa;
     }
 
+    public void setNim_siswa(String nim_siswa) {
+        this.nim_siswa = nim_siswa;
+    }
+
     public String getNama() {
         return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     @NonNull
@@ -103,29 +119,29 @@ public class AbsenGuru extends AbstractItem<AbsenGuru, AbsenGuru.ViewHolder> {
 
     @Override
     public int getType() {
-        return R.id.rv_absen;
+        return R.id.rv_detailRekap;
     }
 
     @Override
     public int getLayoutRes() {
-        return R.layout.item_absensi;
+        return R.layout.item_detail_rekap;
     }
 
-    public class ViewHolder extends FastAdapter.ViewHolder<AbsenGuru> {
+    public class ViewHolder extends FastAdapter.ViewHolder<Detail> {
         private TextView jam_login, jam_logout, tanggal, latitude, longitude, nama;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            jam_login = itemView.findViewById(R.id.txt_jam_login);
-            jam_logout = itemView.findViewById(R.id.txt_jam_logout);
-            tanggal = itemView.findViewById(R.id.txt_tanggal);
-            latitude = itemView.findViewById(R.id.txt_lokasi_latitude);
-            longitude = itemView.findViewById(R.id.txt_lokasi_longitude);
-            nama = itemView.findViewById(R.id.txt_siswa_diajar);
+            jam_login = itemView.findViewById(R.id.txt_jam_login_rekap);
+            jam_logout = itemView.findViewById(R.id.txt_jam_logout_rekap);
+            tanggal = itemView.findViewById(R.id.txt_tanggal_rekap);
+            latitude = itemView.findViewById(R.id.txt_lokasi_latitude_rekap);
+            longitude = itemView.findViewById(R.id.txt_lokasi_longitude_rekap);
+            nama = itemView.findViewById(R.id.txt_siswa_diajar_rekap);
         }
 
         @Override
-        public void bindView(final AbsenGuru item, List<Object> payloads) {
+        public void bindView(final Detail item, List<Object> payloads) {
             jam_login.setText(item.jam_login);
             jam_logout.setText(item.jam_logout);
             tanggal.setText(item.tanggal);
@@ -146,7 +162,7 @@ public class AbsenGuru extends AbstractItem<AbsenGuru, AbsenGuru.ViewHolder> {
         }
 
         @Override
-        public void unbindView(AbsenGuru item) {
+        public void unbindView(Detail item) {
             jam_login.setText(null);
             jam_logout.setText(null);
             tanggal.setText(null);

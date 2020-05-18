@@ -4,11 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,56 +17,52 @@ import java.util.List;
 import id.ac.polinema.miniprojectretrofit.api.ApiClient;
 import id.ac.polinema.miniprojectretrofit.api.ApiInterface;
 import id.ac.polinema.miniprojectretrofit.helper.Session;
+import id.ac.polinema.miniprojectretrofit.model.AbsenGuru;
 import id.ac.polinema.miniprojectretrofit.model.Guru;
+import id.ac.polinema.miniprojectretrofit.model.Rekap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdminActivity extends AppCompatActivity {
+public class RekapActivity extends AppCompatActivity {
     private Session session;
     private TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_rekap);
 
         session = new Session(getApplicationContext());
 
-        final RecyclerView guruView = findViewById(R.id.rv_guru);
+        final RecyclerView rekapView = findViewById(R.id.rv_rekap);
         final ItemAdapter itemAdapter = new ItemAdapter<>();
         final FastAdapter fastAdapter = FastAdapter.with(itemAdapter);
-        final List guru = new ArrayList<>();
+        final List rekap = new ArrayList<>();
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<List<Guru>> call = apiInterface.getGuru();
+        Call<List<Rekap>> call = apiInterface.getRekap();
 
-        call.enqueue(new Callback<List<Guru>>() {
+        call.enqueue(new Callback<List<Rekap>>() {
             @Override
-            public void onResponse(Call<List<Guru>> call, Response<List<Guru>> response) {
-                List<Guru> guruItems = response.body();
+            public void onResponse(Call<List<Rekap>> call, Response<List<Rekap>> response) {
+                List<Rekap> rekapItems = response.body();
 
-                for (Guru item : guruItems) {
-                    guru.add(new Guru(item.getId_guru(), item.getNama(), item.getAlamat(), item.getJenis_kelamin(),
-                            item.getNo_telp(), item.getFoto(), item.getUsername(), item.getPassword()));
+                for (Rekap item : rekapItems) {
+                    rekap.add(new Rekap(item.getUsername(), item.getRekap()));
                 }
 
-                itemAdapter.add(guru);
-                guruView.setAdapter(fastAdapter);
+                itemAdapter.add(rekap);
+                rekapView.setAdapter(fastAdapter);
 
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                guruView.setLayoutManager(layoutManager);
+                rekapView.setLayoutManager(layoutManager);
             }
 
             @Override
-            public void onFailure(Call<List<Guru>> call, Throwable t) {
+            public void onFailure(Call<List<Rekap>> call, Throwable t) {
                 error.setText(t.getMessage());
             }
         });
-    }
-
-    public void handleAdd(View view) {
-        Intent intent = new Intent(AdminActivity.this, AddGuru.class);
-        startActivity(intent);
     }
 }

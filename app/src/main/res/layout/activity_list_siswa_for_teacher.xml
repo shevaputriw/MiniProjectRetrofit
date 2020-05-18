@@ -4,45 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity">
+    tools:context=".ListSiswaForTeacher">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Private Teacher's"
+        android:text="Students List"
         android:textStyle="bold"
         android:textSize="24sp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/rv_guru"
+        app:layout_constraintBottom_toTopOf="@+id/rv_siswaforTeacher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_guru"
+        android:id="@+id/rv_siswaforTeacher"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="650dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        />
-
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="handleAdd"
-        android:text="Add Teacher"
-        android:textColor="#FFFFFF"
-        android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/judul"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

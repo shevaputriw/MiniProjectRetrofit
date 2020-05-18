@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         session.setLoginTime(currentTime);
                         session.setDate(currentDate);
 
-                        Intent intent = new Intent(getApplicationContext(), GuruActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ListSiswaForTeacher.class);
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();

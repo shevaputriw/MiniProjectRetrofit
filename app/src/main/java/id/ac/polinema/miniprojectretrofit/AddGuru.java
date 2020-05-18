@@ -3,10 +3,14 @@ package id.ac.polinema.miniprojectretrofit;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +18,13 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -57,7 +68,7 @@ public class AddGuru extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectImage();
+                requestCameraPermission();
             }
         });
 
@@ -69,9 +80,50 @@ public class AddGuru extends AppCompatActivity {
         });
     }
 
-    private void selectImage() {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, 1);
+    private void requestCameraPermission() {
+        Dexter.withActivity(this).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse response) {
+                openCamera();
+            }
+
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse response) {
+                if(response.isPermanentlyDenied()){
+                    showDialog();
+                }
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                token.continuePermissionRequest();
+            }
+        }).check();
+    }
+
+    private void openCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, 1);
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddGuru.this);
+        builder.setTitle("Allow");
+        builder.setMessage("MiniProjectRetrofit to access this device camera?");
+        builder.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                openCamera();
+            }
+        });
+        builder.setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override
@@ -88,11 +140,8 @@ public class AddGuru extends AppCompatActivity {
         File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                 , System.currentTimeMillis() +"_image.jpeg");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
         bitmap.compress(Bitmap.CompressFormat.JPEG,85,stream);
-
         byte[] bitmapdata = stream.toByteArray();
-
         try {
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(bitmapdata);

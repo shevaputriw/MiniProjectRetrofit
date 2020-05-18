@@ -20,8 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <include android:id="@+id/item_profil" layout="@layout/item_guru" />-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_absen"
         android:layout_width="match_parent"

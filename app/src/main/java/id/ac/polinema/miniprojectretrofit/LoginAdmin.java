@@ -42,7 +42,7 @@ public class LoginAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-                    Intent intent = new Intent(LoginAdmin.this, AdminActivity.class);
+                    Intent intent = new Intent(LoginAdmin.this, AdminActivity1.class);
                     startActivity(intent);
                 }
                 else {

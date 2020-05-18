@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddGuru">
+    tools:context=".AddSiswa">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,9 +20,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Add Private Teacher"
+                android:text="Add Student"
                 android:textSize="20sp"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="130dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <EditText
-                android:id="@+id/edt_nama"
+                android:id="@+id/edt_nama_siswa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -56,10 +56,10 @@
                 android:text="Alamat : "
                 android:layout_marginLeft="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_nama" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_nama_siswa" />
 
             <EditText
-                android:id="@+id/edt_alamat"
+                android:id="@+id/edt_alamat_siswa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -76,17 +76,17 @@
                 android:text="Jenis Kelamin :"
                 android:layout_marginLeft="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_alamat" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_alamat_siswa" />
 
             <RadioGroup
-                android:id="@+id/group_jk"
+                android:id="@+id/group_jk_siswa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView12">
 
                 <RadioButton
-                    android:id="@+id/btn_laki"
+                    android:id="@+id/btn_laki_siswa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Laki-laki"
@@ -94,7 +94,7 @@
                     android:layout_marginTop="10dp"/>
 
                 <RadioButton
-                    android:id="@+id/btn_perempuan"
+                    android:id="@+id/btn_perempuan_siswa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Perempuan"
@@ -106,17 +106,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Telepon : "
+                android:text="Tanggal Lahir : "
                 android:layout_marginLeft="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtJK" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_perempuan_siswa" />
 
             <EditText
-                android:id="@+id/edt_telp"
+                android:id="@+id/edt_tglLahir_siswa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:hint="yyyy-mm-dd"
+                android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -126,13 +128,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Username : "
+                android:text="Kelas : "
                 android:layout_marginLeft="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_telp" />
+                app:layout_constraintTop_toBottomOf="@id/edt_tglLahir_siswa" />
 
             <EditText
-                android:id="@+id/edt_username"
+                android:id="@+id/edt_kelas_siswa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -141,54 +143,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Password : "
-                android:layout_marginLeft="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_username" />
-
-            <EditText
-                android:id="@+id/edt_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Upload Gambar : "
-                android:layout_marginLeft="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_password" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_foreground"
-                android:layout_marginLeft="120dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
             <Button
-                android:id="@+id/bbtn_tambah_data_guru"
+                android:id="@+id/btn_tambah_data_siswa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
                 android:text="ADD"
                 android:layout_marginBottom="20dp"
